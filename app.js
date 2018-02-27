@@ -11,6 +11,12 @@ GAME RULES:
 var score, roundScore, activePlayer, dice;
 score=[0, 0];
 roundScore = 0;
-activePlayer = 0;
+activePlayer = 1;
 dice = Math.floor(Math.random() * 6) +1;
-console.log(dice);
+
+// document.querySelector("#current-" + activePlayer).innerHTML = dice;
+// OR
+document.querySelector("#current-" + activePlayer).textContent = dice;
+
+//we also need a dice to display or indisplay after the players rolls it
+document.querySelector(".dice").style.display = 'none';
