@@ -11,12 +11,18 @@ GAME RULES:
 var score, roundScore, activePlayer;
 score=[0, 0];
 roundScore = 0;
-activePlayer = 1;
-
-
+activePlayer = 0;
 
 //we also need a dice to display or indisplay after the players rolls it
-document.querySelector(".dice").style.display = 'none';
+document.querySelector(".dice").style.display = "none";
+
+document.getElementById('score-0').textContent = "0";
+document.getElementById('score-1').textContent = "0";
+document.getElementById('current-0').textContent = "0";
+document.getElementById('current-1').textContent = "0";
+
+
+
 document.querySelector(".btn-roll").addEventListener("click", function(){
   //we need a random number
   var dice = Math.floor(Math.random() * 6) +1;
@@ -28,18 +34,19 @@ document.querySelector(".btn-roll").addEventListener("click", function(){
 
 
   //update the round score IF the rolled number is not 1
+  if(dice !== 1){
+    //add score
+    roundScore += dice;
+    document.querySelector("#current-" + activePlayer).textContent = roundScore;
 
+  }else{
+    //next player
+    activePlayer === 0 ? activePlayer = 1 : activePlayer =0;
+    roundScore = 0;
+      document.getElementById('current-0').textContent ="0";
+      document.getElementById('current-1').textContent ="0";
+      document.querySelector(".player-1-panel").classList.toggle("active");
+      document.querySelector(".player-0-panel").classList.toggle("active");
 
-
+  }
 });
-
-
-
-
-
-// document.querySelector("#current-" + activePlayer).innerHTML = dice;
-// OR
-// document.querySelector("#current-" + activePlayer).textContent = dice;
-
-// var x = document.querySelector("#score-0").textContent;
-// console.log(x);
