@@ -41,12 +41,30 @@ document.querySelector(".btn-roll").addEventListener("click", function(){
 
   }else{
     //next player
-    activePlayer === 0 ? activePlayer = 1 : activePlayer =0;
-    roundScore = 0;
-      document.getElementById('current-0').textContent ="0";
-      document.getElementById('current-1').textContent ="0";
-      document.querySelector(".player-1-panel").classList.toggle("active");
-      document.querySelector(".player-0-panel").classList.toggle("active");
+
+    nextPlayer();
 
   }
 });
+
+document.querySelector(".btn-hold").addEventListener("click", function(){
+  // add current score to current player's total score
+  score[activePlayer] += roundScore;
+
+  // update the UI
+  document.getElementById("score-" + activePlayer).innerHTML = score[activePlayer];
+
+
+  // check if player won the GAME
+  nextPlayer();
+});
+
+function nextPlayer(){
+  activePlayer === 0 ? activePlayer = 1 : activePlayer =0;
+  roundScore = 0;
+    document.getElementById('current-0').textContent ="0";
+    document.getElementById('current-1').textContent ="0";
+    document.querySelector(".player-1-panel").classList.toggle("active");
+    document.querySelector(".player-0-panel").classList.toggle("active");
+    document.querySelector(".dice").style.display = "none";
+};
